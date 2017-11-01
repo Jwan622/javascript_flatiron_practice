@@ -26,9 +26,10 @@ class CommentsController {
   }
 
   renderComment(comment, imageId) {
+    // what are we going to use the associations for?
     let image = Image.all[imageId]
     image.comments.push(comment)
-    $('#images').find(`ul[data-id=${imageId}] ul#comments-${imageId}`).append(`<li>${comment.commentContent}</li>\n`);
+    $('#images').find(`ul[data-id=${imageId}] ul#comments-${imageId}`).append(comment.commentEl());
   }
 
   addDefaultComments() {
