@@ -32,15 +32,19 @@ class CommentsController {
   }
 
   addDefaultComments() {
-    // ask a question about function vs arrow functions here. odd behavior.
+    // ask a question about function vs arrow functions here. odd behavior in Chrome.
 
+    // this is an N+1, should fix this obviously if there's time.
     $('.image').each((index, image) => {
       const imageId = parseInt($(image).find('ul').attr('data-id'))
 
       Comment.defaults.forEach(comment => {
         let commentItem = comment.commentEl();
+        let commentImageId = comment.imageId
 
-        $('#images').find(`ul[data-id=${imageId}] ul#comments-${imageId}`).append(commentItem);
+        if (commentImageId === imageId) {
+          $('#images').find(`ul[data-id=${imageId}] ul#comments-${imageId}`).append(commentItem);
+        }
       })
     })
   }
