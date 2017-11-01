@@ -20,12 +20,12 @@ class CommentsController {
       const inputText = el.parents('ul').find('.user-text').val();
       const comment = new Comment(inputText, imageId);
 
-      this.renderComment(comment, imageId)
+      this.render(comment, imageId)
       el.parents('ul').find('.user-text').val('')
     });
   }
 
-  renderComment(comment, imageId) {
+  render(comment, imageId) {
     // what are we going to use the associations for?
     let image = Image.all[imageId]
     image.comments.push(comment)
