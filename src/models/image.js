@@ -16,9 +16,7 @@ Image.prototype.imageEl = function() {
     <h2><button class="destroy-image">x</button>${this.title}</h2>
     <ul id="image-${this.id}" data-id="${this.id}">
       <img src="${this.url}"></img>
-      <ul id="comments-${this.id}">
-        ${this.comments}
-      </ul>
+      <ul id="comments-${this.id}"></ul>
       <form id="add-comment" class="add-comment" data-id=${this.id} action="#" method="post">
         <label for="comment-description">Comment: </label>
         <input type="text" id="comment-description-${this.id}" class="user-text" name="comment-description" placeholder="comment">
@@ -29,17 +27,16 @@ Image.prototype.imageEl = function() {
 };
 
 Image.load = function() {
-  Image.defaults.map(function(image){
+  Image.defaults.map(function(image) {
     var newImage = new Image(image.title, image.url)
     ImagesController.render(newImage)
   })
 }
 
-
-
 // Image.all is kind of like a class method it seems, defined on the Object constructor function that created
 // instance object.
 Image.all = [];
+
 Image.defaults = [
   {
     title: 'The Perfect Date',

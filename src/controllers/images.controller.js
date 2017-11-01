@@ -14,7 +14,7 @@ ImagesController.prototype.hideCommentForm = function(){
 };
 
 ImagesController.prototype.destroyImageLiveEventListener = function(){
-  var self = this;
+  const self = this;
 
   this.$wrapper.on('click', '.destroy-image', function() { //live event imageener
     var imageId = parseInt($(this).parents('h2').next('ul').data('id'));

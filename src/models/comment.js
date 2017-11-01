@@ -1,34 +1,27 @@
 'use strict';
 // CommentModel
 
-function Comment(text, imageId) {
-  this.id = this.constructor.all.length;
-  this.text = text;
-  this.imageId = imageId;
-  this.constructor.all.push(this);
+class Comment {
+  constructor(commentContent, imageId) {
+    this.id = this.constructor.all.length;
+    this.commentContent = commentContent;
+    this.imageId = imageId;
+    this.constructor.all.push(this);
+  }
+
+  commentEl() {
+    return `<li>${this.commentContent}</li>\n`
+  }
+
+  findImage(imageId) {
+    return Image.all[imageId];
+  }
 }
 
-Comment.load = function() {
-  Comment.defaults.map(function(comment){
-    let newComment = new Comment(comment.text, comment.image)
-  })
-}
-
-// used for creating the id.
 Comment.all = [];
 
-Comment.prototype.findImage = function() {
-  return Image.all[this.imageId];
-}
-
 Comment.defaults = [
-  {
-    text: 'I am a comment'
-  },
-  {
-    text: 'I am another comment'
-  },
-  {
-    text: 'I am a last comment'
-  },
+  new Comment('I am a comment', 0),
+  new Comment('I am another comment', 1),
+  new Comment('I am a last comment', 2)
 ];
